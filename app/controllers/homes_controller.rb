@@ -3,5 +3,6 @@ class HomesController < ApplicationController
   end
 
   def show
+    @apps = App.all
   end
 end

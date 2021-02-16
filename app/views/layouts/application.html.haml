@@ -9,14 +9,16 @@
     = stylesheet_link_tag  'application', media: 'all', 'data-turbolinks-track': 'reload'
     = stylesheet_pack_tag  'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag  'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'
   %body.bg-white
     - flash.each do |type, message|
-      - if type == "alert"
-        .bg-red-500
-          .container.px-2.mx-auto.py-4.text-white.text-center.font-medium.font-sans= message
-      - if type == "notice"
-        .bg-green-500
-          .container.px-2.mx-auto.py-4.text-white.text-center.font-medium.font-sans= message
+      %div.messages
+        - if type == "alert"
+          .bg-red-500
+            .container.px-2.mx-auto.py-4.text-white.text-center.font-medium.font-sans= message
+        - if type == "notice"
+          .bg-green-500
+            .container.px-2.mx-auto.py-4.text-white.text-center.font-medium.font-sans= message
     %header.mb-4
       %nav.flex.items-center.justify-between.flex-wrap.bg-gray-100.py-3.lg:px-10.px-3.text-gray-700.border-b.border-gray-400
         .flex.items-center.flex-no-shrink.mr-6
@@ -38,3 +40,12 @@
               = link_to "Cadastre-se", new_user_registration_path, class:"btn btn-default block"
     %main.lg:px-10.px-4
       = content_for?(:content) ? yield(:content) : yield
+
+    :javascript
+      $(document).ready(function() {
+        if ($('.messages')) {
+          setTimeout(function () {
+            $('.messages').hide('slow');
+          }, 3500);
+        }
+      })

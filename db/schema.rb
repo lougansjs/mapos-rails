@@ -10,7 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_10_154107) do
+ActiveRecord::Schema.define(version: 2021_02_13_045307) do
+
+  create_table "apps", force: :cascade do |t|
+    t.string "name"
+    t.string "path"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
